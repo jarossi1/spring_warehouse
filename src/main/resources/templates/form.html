@@ -4,12 +4,20 @@
         <link th:href="@{/form-stylesheet.css}" rel="stylesheet"> 
     </head>    
     <body>
+
         <div class="topnav">
             <a class="active" th:href="@{/}">Warehouse Form</a>
             <a th:href="@{/inventory}">Warehouse Inventory</a>
         </div>
-</head>
-<body>
-    <p>Hello User</p>
-</body>
+        <div>
+            <h2>Smart Solutions Warehouse</h2>
+            <form action="post" th:object="${}" th:action="@{/submitItem}">
+                <select  th:field="*{category}">
+                    <option th:each="category: ${categories}" th:text="${category}" value="">Choose Category</option>
+                </select>
+
+
+            </form>
+        </div>
+    </body>
 </html>

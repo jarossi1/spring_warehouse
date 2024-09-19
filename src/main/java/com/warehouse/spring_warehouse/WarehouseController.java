@@ -1,8 +1,17 @@
 package com.warehouse.spring_warehouse;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import com.warehouse.Constants;
+import com.warehouse.WarehouseItem;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 
@@ -14,8 +23,12 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 public class WarehouseController {
+
+    List<WarehouseItem> items = new ArrayList<>();
+
     @GetMapping("/")
-    public String getForm() {
+    public String getForm(Model model) {
+        model.addAttribute("categories", Constants.PC_CATEGORIES);
         return "form";
     }
     
@@ -27,6 +40,13 @@ public class WarehouseController {
     public String getInventory() {
         return "inventory";
     }
+
+    @PostMapping("/submitItem")
+    public String postSubmitItem() {
+        
+        return "redirect/inventory";
+    }
+    
     
     
 }
