@@ -28,7 +28,9 @@ public class WarehouseController {
 
     @GetMapping("/")
     public String getForm(Model model) {
+        model.addAttribute("warehouseItem", new WarehouseItem());
         model.addAttribute("categories", Constants.PC_CATEGORIES);
+
         return "form";
     }
     
@@ -37,14 +39,15 @@ public class WarehouseController {
      * @return the view of inventory (HTML page)
      */
     @GetMapping("/inventory")
-    public String getInventory() {
+    public String getInventory(Model model) {
+        model.addAttribute("items", items);
         return "inventory";
     }
 
     @PostMapping("/submitItem")
-    public String postSubmitItem() {
-        
-        return "redirect/inventory";
+    public String handleSubmit(WarehouseItem warehouseItem) {
+        items.add(warehouseItem);
+        return "redirect:/inventory";
     }
     
     

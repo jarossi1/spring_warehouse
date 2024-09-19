@@ -6,24 +6,26 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class WarehouseItem {
 
+    private String category;
     private String name;
     private Double price;
     private Double discount;
-    @DateTimeFormat(pattern = "MM-dd-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
     
     
-    public WarehouseItem(String name, Double price, Double discount, Date date) {
-        this.name = name;
-        this.price = price;
-        this.discount = discount;
-        this.date = date;
-    }
 
     public WarehouseItem() {
 
     }
     
+    public String getCategory() {
+        return this.category;
+    }
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     public String getName() {
         return this.name;
     }
