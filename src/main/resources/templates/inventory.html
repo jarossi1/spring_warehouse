@@ -11,6 +11,7 @@
     </div>
     <div>
         <h2>Smart Solutions Inventory</h2>
+        <strong style="background-color: yellow"   th:if="${status == 'success'}"> You successfully submitted the item.</strong>
     </div>
 
     <div class="container"></div>
@@ -28,9 +29,11 @@
                 <td th:text="${#numbers.formatCurrency(item.price)}"></td>
                 <td th:text="${#numbers.formatCurrency(item.discount)}"></td>
                 <td type="date" th:text="${#dates.format(item.date, 'yyyy-MM-dd')}"></td>
+                
                 <td>
-                   <a role="button" style="color:rgb(255, 255, 255); background-color: #0d6209" class="table-button" th:href="@{/(id = ${item.id})}">< Update Order</a>
+                   <a role="button" style="color:rgb(255, 255, 255); background-color: #0d6209" class="table-button" th:href="@{/(id = ${item.id})}">Update Order</a>
                 </td>
+
             </tr>
         </table>
     </div>

@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.warehouse.Constants;
 import com.warehouse.WarehouseItem;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 
@@ -48,10 +48,18 @@ public class WarehouseController {
     }
 
     @PostMapping("/submitItem")
-    public String handleSubmit(WarehouseItem warehouseItem) {
-        items.add(warehouseItem);
+    public String handleSubmit(WarehouseItem warehouseItem, RedirectAttributes redirectAttributes) {
+        int index = getIndexFromId(warehouseItem.getId());
+        String status = Constants.SUCCESS_STATUS;
+        if (index == Constants.NOT_FOUND) {
+            items.add(warehouseItem);
+        } else {
+            items.set(index, warehouseItem);
+        }
+        redirectAttributes.addFlashAttribute("status", status);
         return "redirect:/inventory";
     }
+    
     
     public int getIndexFromId(String id) {
         for (int i = 0; i < items.size(); i++) {
@@ -59,6 +67,8 @@ public class WarehouseController {
         }
         return Constants.NOT_FOUND;
     }
+
+
 
     
 }
