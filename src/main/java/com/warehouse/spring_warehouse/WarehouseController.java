@@ -11,6 +11,7 @@ import com.warehouse.Constants;
 import com.warehouse.WarehouseItem;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -27,8 +28,9 @@ public class WarehouseController {
     List<WarehouseItem> items = new ArrayList<>();
 
     @GetMapping("/")
-    public String getForm(Model model) {
-        model.addAttribute("warehouseItem", new WarehouseItem());
+    public String getForm(Model model, @RequestParam(required = false) String id) {
+        int index =  getIndexFromId(id);
+        model.addAttribute("warehouseItem", index == Constants.NOT_FOUND ?  new WarehouseItem() : items.get(index));
         model.addAttribute("categories", Constants.PC_CATEGORIES);
 
         return "form";
@@ -40,6 +42,7 @@ public class WarehouseController {
      */
     @GetMapping("/inventory")
     public String getInventory(Model model) {
+
         model.addAttribute("items", items);
         return "inventory";
     }
@@ -50,6 +53,12 @@ public class WarehouseController {
         return "redirect:/inventory";
     }
     
-    
+    public int getIndexFromId(String id) {
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getId().equals(id)) return i;
+        }
+        return Constants.NOT_FOUND;
+    }
+
     
 }

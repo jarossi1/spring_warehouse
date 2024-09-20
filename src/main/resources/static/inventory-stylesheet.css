@@ -24,6 +24,23 @@
   }
 body {
     font-family: Arial, Helvetica, sans-serif; 
+}
+.table-button {
+  cursor: pointer;
+  float: left;
+  border: solid 1px gray;
+  font: #EDF7FF;
+  width: 80%;
+  background-color: green;
+  font-size: 16px;
+  text-decoration: none;
+  padding-top: .5em;
+  padding-bottom: .5em;
+  font-family: sans-serif;
+  margin-right: 0.5em;
+  margin-left: 0.5em;
+  padding-left: .5em;
+  padding-right: .5em;
 }   
 .container {
 position: relative;
@@ -83,23 +100,6 @@ padding: 0.75em;
       content: "$";
     }
     
-  .table-button {
-      cursor: pointer;
-      float: left;
-      border: solid 1px gray;
-      font: #EDF7FF;
-      width: 80%;
-      background-color: green;
-      font-size: 16px;
-      text-decoration: none;
-      padding-top: .5em;
-      padding-bottom: .5em;
-      font-family: sans-serif;
-      margin-right: 0.5em;
-      margin-left: 0.5em;
-      padding-left: .5em;
-      padding-right: .5em;
-    }
   
   
     

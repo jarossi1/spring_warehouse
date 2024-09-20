@@ -1,5 +1,5 @@
 package com.warehouse;
-
+import java.util.UUID;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,11 +12,11 @@ public class WarehouseItem {
     private Double discount;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
-    
+    private String id;
     
 
     public WarehouseItem() {
-
+        this.id = UUID.randomUUID().toString();
     }
     
     public String getCategory() {
@@ -49,6 +49,14 @@ public class WarehouseItem {
     }
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
     
     
