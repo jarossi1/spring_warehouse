@@ -5,10 +5,14 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.warehouse.Constants;
 import com.warehouse.WarehouseItem;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -48,7 +52,17 @@ public class WarehouseController {
     }
 
     @PostMapping("/submitItem")
-    public String handleSubmit(WarehouseItem warehouseItem, RedirectAttributes redirectAttributes) {
+    public String handleSubmit(@Valid WarehouseItem warehouseItem, BindingResult result, RedirectAttributes redirectAttributes, Model model) {
+        System.out.println("has errors?: " + result.hasErrors());
+        
+        if (warehouseItem.getCategory() == null || warehouseItem.getCategory().isEmpty()) {
+            result.rejectValue("category", "error.category", "Category cannot be blank");   
+        }
+        if (result.hasErrors()) {
+            model.addAttribute("categories", Constants.PC_CATEGORIES);
+            return "form";
+        } 
+        
         int index = getIndexFromId(warehouseItem.getId());
         String status = Constants.SUCCESS_STATUS;
         if (index == Constants.NOT_FOUND) {

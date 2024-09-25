@@ -4,12 +4,18 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class WarehouseItem {
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
+public class WarehouseItem {
+    @NotNull(message = "Category cannot be blank")
     private String category;
+    @NotBlank(message = "Name cannot be blank")
     private String name;
+    @NotNull(message = "Price cannot be blank")
     private Double price;
     private Double discount;
+    @NotNull(message = "Date cannot be blank")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
     private String id;
