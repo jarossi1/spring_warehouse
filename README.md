@@ -16,3 +16,10 @@ This practice application, built with Spring Boot and Thymeleaf, aims to enhance
 - **Thymeleaf**: Server-side rendering for dynamic HTML.
 - **Java**: Primary programming language.
 - **HTML/CSS**: Front-end structure and styling.
+
+## Recent Updates 
+(09/25/2024)
+Added Spring Boot Starter Validation dependency for enhanced form validation.
+Implemented @NotNull for category and date, and @NotBlank for name and price.
+Updated WarehouseController to validate the category and show appropriate error messages.
+Enhanced forms.html with th:if and th:errors for improved user feedback on validation errors.
